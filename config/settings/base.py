@@ -5,7 +5,7 @@ Base settings to build other settings files upon.
 import environ
 
 ROOT_DIR = (
-    environ.Path(__file__) - 3
+        environ.Path(__file__) - 3
 )  # (clowning_around/config/settings/base.py - 3 = clowning_around/)
 APPS_DIR = ROOT_DIR.path("clowning_around")
 
@@ -51,6 +51,15 @@ ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication'
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated'
+    )
+}
+
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -68,12 +77,14 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "rest_framework",
+    "rest_framework"
+    "rest_framework.authtoken"
     "django_celery_beat",
 ]
 
 LOCAL_APPS = [
     "clowning_around.users.apps.UsersConfig",
+    'clown'
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -231,7 +242,7 @@ LOGGING = {
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
+                      "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
@@ -280,7 +291,6 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "clowning_around.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "clowning_around.users.adapters.SocialAccountAdapter"
-
 
 # Your stuff...
 # ------------------------------------------------------------------------------
