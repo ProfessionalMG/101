@@ -25,3 +25,6 @@ class AppointmentDetailView(LoginRequiredMixin, DetailView):
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializers
+
+# TODO:Rate appointments with smiley faces
+# TODO: Runserver to effectively test app
