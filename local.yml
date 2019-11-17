@@ -15,9 +15,6 @@ services:
       - mailhog
     volumes:
       - .:/app
-    env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
     ports:
       - "8000:8000"
     command: /start
@@ -30,8 +27,6 @@ services:
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
-    env_file:
-      - ./.envs/.local/.postgres
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
